@@ -21,7 +21,11 @@ Your CBorg API key must be set in the environment variable, CBORG_API_KEY.
 
 After installing, select the CBorg module of choice from the Jupyter AI settings.
 
-## Endpoint Override
+## Budget Checking via /spend
+
+This provider adds a new slash command "/spend" which returns your current API key spend and budget reset date.
+
+## Changing the API Endpoint
 
 The default endpoint is https://api.cborg.lbl.gov.
 
