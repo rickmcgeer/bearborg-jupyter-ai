@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.4.0", "jupyterlab~=4.0", "hatch-nodejs-version"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter_ai_cborg"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+classifiers = [
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Framework :: Jupyter :: JupyterLab :: 4",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
+]
+version = "0.1.0"
+description = "A Jupyter AI extension for CBorg"
+authors = [
+    { name = "LBNL Science IT Consulting", email = "scienceit@lbl.gov" },
+]
+dependencies = ["jupyter_ai"]
+
+[project.optional-dependencies]
+test = ["coverage", "pytest", "pytest-asyncio", "pytest-cov"]
+
+[project.entry-points."jupyter_ai.model_providers"]
+cborg = "jupyter_ai_cborg.provider:CBorgProvider"
+cborg-chat = "jupyter_ai_cborg.provider:CBorgChatProvider"
+
+[project.entry-points."jupyter_ai.chat_handlers"]
+cborg-spend-slash-command = "jupyter_ai_cborg.spend:CBorgSpendSlashCommand"
+
+[project.entry-points."jupyter_ai.embeddings_model_providers"]
+cborg-embeddings = "jupyter_ai_cborg.provider:CBorgEmbeddingsProvider"
+
+[tool.check-wheel-contents]
+ignore = ["W002"]
+
+[tool.hatch.build.hooks.version]
+path = "jupyter_ai_cborg/_version.py"
