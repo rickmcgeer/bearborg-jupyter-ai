@@ -1,35 +1,52 @@
 # jupyter_ai_cborg
 
-`jupyter_ai_cborg` is a Jupyter AI module that registers CBorg models with Jupyter AI as a model provider.
+`jupyter_ai_cborg` is a Python module that registers CBorg as a model provider for Jupyter AI.
 
 ## Requirements
 
 - Python 3.8 - 3.13
 - JupyterLab 4
 
-## Install
+## Installation
 
 To install the extension, clone repo and then use pip to install:
 
 ```bash
+git clone https://github.com/lbnl-science-it/cborg-jupyter-ai.git
+cd cborg-jupyter-ai
 pip install -e .
 ```
 
+If you use a virtual environment, be sure to activate the venv prior to installation.
+
 ## Setup
 
-Your CBorg API key must be set in the environment variable, CBORG_API_KEY.
+Authentication for CBorg is provided via your API key, which must be defined as an environment variable CBORG_API_KEY:
 
-After installing, select the CBorg module of choice from the Jupyter AI settings.
+```bash
+export CBORG_API_KEY="sk-..."
+jupyter-lab
+```
+
+## Model Selection
+
+Within Jupyter Lab, select the Jupyter AI icon on the left. Select the CBorg model of choice from the drop down menuse.
 
 ## Budget Checking via /spend
 
-This provider adds a new slash command "/spend" which returns your current API key spend and budget reset date.
+A custom slash command "/spend" is available, which returns your current API key spend and budget reset date.
 
 ## Changing the API Endpoint
 
 The default endpoint is https://api.cborg.lbl.gov.
 
-You can change it by setting the environment variable, CBORG_API_ENDPOINT. For example, use https://api-local.cborg.lbl.gov for direct access on LBLnet (bypassing Cloudflare routing), or use http://localhost:8001 if you are using the CBorg Client-side Proxy to route requests dynamically.
+To change the endpoint, set the environment variable CBORG_API_ENDPOINT, e.g.
+
+```bash
+export CBORG_API_ENDPOINT="https://api-local.cborg.lbl.gov
+```
+
+For CBorg Client Proxy users, you can use http://localhost:8001 to route requests dynamically to the best endpoint (advanced use case).
 
 ## Bug Reports and Support
 
