@@ -52,6 +52,11 @@ For CBorg Client Proxy users, you can use http://localhost:8001 to route request
 
 Please contact [Science IT Consulting](scienceit@lbl.gov) if you have problems.
 
+## TODO Items
+
+- Inline completion support
+- Add more models to chat and embeddings 
+
 ## Thanks
 
 Thank you to [Jupyter AI Blablador](https://github.com/FZJ-JSC/jupyter-ai-blablador) for the initial code.
