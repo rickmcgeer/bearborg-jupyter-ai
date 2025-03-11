@@ -32,7 +32,7 @@ dependencies = ["jupyter_ai", "langchain_openai"]
 test = ["coverage", "pytest", "pytest-asyncio", "pytest-cov"]
 
 [project.entry-points."jupyter_ai.model_providers"]
-cborg = "jupyter_ai_cborg.provider:CBorgProvider"
+#cborg = "jupyter_ai_cborg.provider:CBorgProvider" # uses older API format, chat is preferred now
 cborg-chat = "jupyter_ai_cborg.provider:CBorgChatProvider"
 
 [project.entry-points."jupyter_ai.chat_handlers"]
