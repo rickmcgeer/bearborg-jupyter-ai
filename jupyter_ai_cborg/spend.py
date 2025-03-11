@@ -21,11 +21,11 @@ class CBorgSpendSlashCommand(BaseChatHandler):
 
         key = os.environ.get('CBORG_API_KEY')
 	
-        response = requests.get(os.environ.get('CBORG_API_ENDPOINT', 'https://api.cborg.lbl.gov/') + 'key/info', headers={ 'Authorization': 'Bearer ' + key })
+        response = requests.get(os.environ.get('CBORG_API_ENDPOINT', 'https://api.cborg.lbl.gov') + '/key/info', headers={ 'Authorization': 'Bearer ' + key })
 
         user_id = response.json()['info']['user_id']
 
-        response = requests.get(os.environ.get('CBORG_API_ENDPOINT', 'https://api.cborg.lbl.gov/') + 'user/info', params={ 'user_id': user_id }, headers={ 'Authorization': 'Bearer ' + key })
+        response = requests.get(os.environ.get('CBORG_API_ENDPOINT', 'https://api.cborg.lbl.gov') + '/user/info', params={ 'user_id': user_id }, headers={ 'Authorization': 'Bearer ' + key })
 
         info = response.json()
 

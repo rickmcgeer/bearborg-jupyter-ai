@@ -205,6 +205,6 @@ class CBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
     #    name="CBORG_API_KEY", keyword_param="openai_api_key",
     #)
     openai_api_key = CBorgAPIKey()
-    openai_api_base = getenv("CBORG_API_ENDPOINT", 'https://api.cborg.lbl.gov') + '/v1')
+    openai_api_base = getenv("CBORG_API_ENDPOINT", 'https://api.cborg.lbl.gov') + '/v1'
     openai_organization = "Berkeley Lab"
     persona = Persona(name="CBorg Jupyternaut", avatar_route="api/ai/static/jupyternaut.svg")
