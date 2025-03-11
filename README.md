@@ -9,7 +9,7 @@
 
 ## Installation
 
-To install the extension, clone repo and then use pip to install:
+To install the extension, clone this repo and then use pip to install from the local directory:
 
 ```bash
 git clone https://github.com/lbnl-science-it/cborg-jupyter-ai.git
