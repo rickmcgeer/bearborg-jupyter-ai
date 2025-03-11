@@ -40,10 +40,10 @@ A custom slash command "/spend" is available, which returns your current API key
 
 The default endpoint is https://api.cborg.lbl.gov.
 
-To change the endpoint, set the environment variable CBORG_API_ENDPOINT, e.g.
+To change the endpoint, set the environment variable CBORG_API_ENDPOINT, e.g. for usage internal to LBLnet:
 
 ```bash
-export CBORG_API_ENDPOINT="https://api-local.cborg.lbl.gov
+export CBORG_API_ENDPOINT="https://api-local.cborg.lbl.gov"
 ```
 
 For CBorg Client Proxy users, you can use http://localhost:8001 to route requests dynamically to the best endpoint (advanced use case).
