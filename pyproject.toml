@@ -3,7 +3,7 @@ requires = ["hatchling>=1.4.0", "jupyterlab~=4.0", "hatch-nodejs-version"]
 build-backend = "hatchling.build"
 
 [project]
-name = "jupyter_ai_cborg"
+name = "jupyter_ai_bearborg"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -22,7 +22,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13"
 ]
 version = "0.1.0"
-description = "A Jupyter AI extension for CBorg"
+description = "A Jupyter AI extension for BearBorg"
 authors = [
     { name = "LBNL Science IT Consulting", email = "scienceit@lbl.gov" },
 ]
@@ -33,16 +33,16 @@ test = ["coverage", "pytest", "pytest-asyncio", "pytest-cov"]
 
 [project.entry-points."jupyter_ai.model_providers"]
 #cborg = "jupyter_ai_cborg.provider:CBorgProvider" # uses older API format, chat is preferred now
-cborg-chat = "jupyter_ai_cborg.provider:CBorgChatProvider"
+cborg-chat = "jupyter_ai_bearborg.provider:BeasrBorgChatProvider"
 
 [project.entry-points."jupyter_ai.chat_handlers"]
-cborg-spend-slash-command = "jupyter_ai_cborg.spend:CBorgSpendSlashCommand"
+bearborg-spend-slash-command = "jupyter_ai_bearborg.spend:BearBorgSpendSlashCommand"
 
 [project.entry-points."jupyter_ai.embeddings_model_providers"]
-cborg-embeddings = "jupyter_ai_cborg.provider:CBorgEmbeddingsProvider"
+bearborg-embeddings = "jupyter_ai_bearborg.provider:BearBorgEmbeddingsProvider"
 
 [tool.check-wheel-contents]
 ignore = ["W002"]
 
 [tool.hatch.build.hooks.version]
-path = "jupyter_ai_cborg/_version.py"
+path = "jupyter_ai_bearborg/_version.py"
