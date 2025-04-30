@@ -1,4 +1,4 @@
-# jupyter_ai_cborg
+# jupyter_ai_bearborg
 
 `jupyter_ai_cborg` is a Python module that registers CBorg as a model provider for Jupyter AI.
 
@@ -21,7 +21,7 @@ If you use a virtual environment, be sure to activate the venv prior to installa
 
 ## Setup
 
-Authentication for CBorg is provided via your API key, which must be defined as an environment variable CBORG_API_KEY:
+Authentication for BearBorg is provided via your API key, which must be defined as an environment variable LITELLM_API_KEY:
 
 ```bash
 export CBORG_API_KEY="sk-..."
@@ -30,7 +30,7 @@ jupyter-lab
 
 ## Model Selection
 
-Within Jupyter Lab, select the Jupyter AI icon on the left. Select the CBorg model of choice from the drop down menuse.
+Within Jupyter Lab, select the Jupyter AI icon on the left. Select the BearBorg model of choice from the drop down menuse.
 
 ## Budget Checking via /spend
 
@@ -38,19 +38,12 @@ A custom slash command "/spend" is available, which returns your current API key
 
 ## Changing the API Endpoint
 
-The default endpoint is https://api.cborg.lbl.gov.
+The default endpoint is https://bearborg.berkeley.edu:4443.
 
-To change the endpoint, set the environment variable CBORG_API_ENDPOINT, e.g. for usage internal to LBLnet:
+To change the endpoint, set the environment variable LITELLM_SERVER
 
-```bash
-export CBORG_API_ENDPOINT="https://api-local.cborg.lbl.gov"
-```
 
-For CBorg Client Proxy users, you can use http://localhost:8001 to route requests dynamically to the best endpoint (advanced use case).
 
-## Bug Reports and Support
-
-Please contact [Science IT Consulting](scienceit@lbl.gov) if you have problems.
 
 ## TODO Items
 
@@ -59,6 +52,6 @@ Please contact [Science IT Consulting](scienceit@lbl.gov) if you have problems.
 
 ## Thanks
 
-Thank you to [Jupyter AI Blablador](https://github.com/FZJ-JSC/jupyter-ai-blablador) for the initial code.
+Thank you to Andrew Schmeder of LBL for the CBorg code on which this is based
 
 
