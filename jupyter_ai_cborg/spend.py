@@ -8,7 +8,7 @@ from jupyter_ai.models import HumanChatMessage
 class CBorgSpendSlashCommand(BaseChatHandler):
 
     id = "spend"
-    name = "CBorg Budget Info"
+    name = "BearBorg Budget Info"
     help = "Get spend and budget info for CBorg User"
     routing_type = SlashCommandRoutingType(slash_id="spend")
 
@@ -19,7 +19,7 @@ class CBorgSpendSlashCommand(BaseChatHandler):
 
     async def process_message(self, message: HumanChatMessage):
 
-        key = os.environ.get('CBORG_API_KEY')
+        key = os.environ.get('LITELLM_API_KEY')
 	
         response = requests.get(os.environ.get('CBORG_API_ENDPOINT', 'https://api.cborg.lbl.gov') + '/key/info', headers={ 'Authorization': 'Bearer ' + key })
 

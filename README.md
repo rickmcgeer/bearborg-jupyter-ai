@@ -24,7 +24,7 @@ If you use a virtual environment, be sure to activate the venv prior to installa
 Authentication for BearBorg is provided via your API key, which must be defined as an environment variable LITELLM_API_KEY:
 
 ```bash
-export CBORG_API_KEY="sk-..."
+export LITELLM_API_KEY="sk-..."
 jupyter-lab
 ```
 

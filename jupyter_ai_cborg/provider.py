@@ -36,15 +36,15 @@ import langchain_openai.llms.base
 langchain_openai.llms.base._stream_response_to_generation_chunk = _stream_response_to_generation_chunk
 
 
-class CBorgAPIKey:
+class BearBorgAPIKey:
 
-    key = getenv('CBORG_API_KEY')
+    key = getenv('LITELLM_API_KEY')
 
     def get_secret_value(self):
         return self.key
 
-class CBorgProvider(BaseProvider, OpenAI):
-    model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,CBorgAPIKey)}
+class BearBorgProvider(BaseProvider, OpenAI):
+    model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,BearBorgAPIKey)}
     id = "cborg"
     name = "CBorg"
     models = [
@@ -63,17 +63,17 @@ class CBorgProvider(BaseProvider, OpenAI):
     # registry = False
     pypi_package_deps = ["langchain_openai"]
     #auth_strategy = EnvAuthStrategy(
-    #    name="CBORG_API_KEY", keyword_param="openai_api_key",
+    #    name="LITELLM_API_KEY", keyword_param="openai_api_key",
     #)
-    openai_api_key = CBorgAPIKey()
-    openai_api_base = getenv("CBORG_API_ENDPOINT", 'https://api.cborg.lbl.gov') + '/v1'
-    openai_organization = "Berkeley Lab"
-    persona = Persona(name="CBorg", avatar_route="api/ai/static/jupyternaut.svg")
+    openai_api_key = BearBorgAPIKey()
+    openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433') + '/v1'
+    openai_organization = "Research IT"
+    persona = Persona(name="BearBorg", avatar_route="api/ai/static/jupyternaut.svg")
 
     @classmethod
     def is_api_key_exc(cls, e: Exception):
         """
-        Determine if the exception is an CBorg API key error.
+        Determine if the exception is an BearBorg API key error.
         """
         import openai
 
@@ -82,16 +82,13 @@ class CBorgProvider(BaseProvider, OpenAI):
             return error_details.get("code") == "invalid_api_key"
         return False
 
-class CBorgChatProvider(BaseProvider, ChatOpenAI):
-    model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,CBorgAPIKey)}
-    id = "cborg-chat"
-    name = "CBorg"
+class BearBorgChatProvider(BaseProvider, ChatOpenAI):
+    model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,BearBorgAPIKey)}
+    id = "bearborg-chat"
+    name = "BearBorg"
     models = [
-        "lbl/cborg-coder:latest",
-        "lbl/cborg-deepthought:latest",
         "openai/chatgpt:latest",
-        "google/gemini:latest",
-        "anthropic/claude:latest"
+        "google/gemini:latest"
     ]
     streaming = False
     temperature = 0.5
@@ -101,10 +98,10 @@ class CBorgChatProvider(BaseProvider, ChatOpenAI):
     # registry = False
     pypi_package_deps = ["langchain_openai"]
     #auth_strategy =  EnvAuthStrategy(
-    #    name="CBORG_API_KEY", keyword_param="openai_api_key",
+    #    name="LITELLM_API_KEY", keyword_param="openai_api_key",
     #)
-    openai_api_key = CBorgAPIKey()
-    openai_api_base = getenv("CBORG_API_ENDPOINT", 'https://api.cborg.lbl.gov') + '/v1'
+    openai_api_key = BearBorgAPIKey()
+    openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433') + '/v1'
     openai_organization = "Berkeley Lab"
     persona = Persona(name="CBorg", avatar_route="api/ai/static/jupyternaut.svg")
 
@@ -121,7 +118,7 @@ class CBorgChatProvider(BaseProvider, ChatOpenAI):
         return False
 
 class CBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
-    model_config = {"ignored_types": (str,Persona,EnvAuthStrategy,CBorgAPIKey)}
+    model_config = {"ignored_types": (str,Persona,EnvAuthStrategy,BearBorgAPIKey)}
     id = "cborg-embeddings"
     name = "CBorg"
     models = [
@@ -133,9 +130,9 @@ class CBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
     # registry = False
     pypi_package_deps = ["langchain_openai"]
     #auth_strategy =  EnvAuthStrategy(
-    #    name="CBORG_API_KEY", keyword_param="openai_api_key",
+    #    name="LITELLM_API_KEY", keyword_param="openai_api_key",
     #)
-    openai_api_key = CBorgAPIKey()
-    openai_api_base = getenv("CBORG_API_ENDPOINT", 'https://api.cborg.lbl.gov') + '/v1'
+    openai_api_key = BearBorgAPIKey()
+    openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433') + '/v1'
     openai_organization = "Berkeley Lab"
     persona = Persona(name="CBorg", avatar_route="api/ai/static/jupyternaut.svg")
