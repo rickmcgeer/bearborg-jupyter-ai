@@ -10,8 +10,10 @@ from langchain_core.callbacks import (
     CallbackManagerForLLMRun,
 )
 
+
 from jupyter_ai import EnvAuthStrategy, Field
 from jupyter_ai_magics import BaseProvider, BaseEmbeddingsProvider, Persona
+# from jupyter_ai.models.providers import provider
 
 # Difference between OpenAI and ChatOpenAI:
 #   https://stackoverflow.com/questions/76950609/what-is-the-difference-between-openai-and-chatopenai-in-langchain
@@ -42,17 +44,20 @@ class BearBorgAPIKey:
 
     def get_secret_value(self):
         return self.key
+    
 
 class BearBorgProvider(BaseProvider, OpenAI):
+# class BearBorgProvider(BaseCompletionModel, OpenAI):
     model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,BearBorgAPIKey)}
-    id = "cborg"
-    name = "CBorg"
+    id = "bearborg-completions"
+    name = "BearBorg"
     models = [
-        "lbl/cborg-coder:latest",
-        "lbl/cborg-deepthought:latest",
-        "openai/chatgpt:latest",
-        "google/gemini:latest",
-        "anthropic/claude:latest",
+        "azure/gpt-4o",
+        "azure/gpt-4o-mini",
+        "gemini/gemini-1.5-pro",
+        "gemini/gemini-1.5-flash"    ,
+        "gemini/gemini-2.0-flash-lite-001",
+        "gemini/gemini-2.0-flash-001"
     ]
 
     streaming = False
@@ -82,13 +87,19 @@ class BearBorgProvider(BaseProvider, OpenAI):
             return error_details.get("code") == "invalid_api_key"
         return False
 
+# @provider(id="bearborg-chat")
 class BearBorgChatProvider(BaseProvider, ChatOpenAI):
+# class BearBorgChatProvider(BaseChatModel, ChatOpenAI):
     model_config = {"ignored_types": (str,bool,float,Persona,EnvAuthStrategy,BearBorgAPIKey)}
     id = "bearborg-chat"
     name = "BearBorg"
     models = [
-        "openai/chatgpt:latest",
-        "google/gemini:latest"
+        "azure/gpt-4o",
+        "azure/gpt-4o-mini",
+        "gemini/gemini-1.5-pro",
+        "gemini/gemini-1.5-flash"    ,
+        "gemini/gemini-2.0-flash-lite-001",
+        "gemini/gemini-2.0-flash-001"
     ]
     streaming = False
     temperature = 0.5
@@ -103,7 +114,7 @@ class BearBorgChatProvider(BaseProvider, ChatOpenAI):
     openai_api_key = BearBorgAPIKey()
     openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433') + '/v1'
     openai_organization = "Berkeley Lab"
-    persona = Persona(name="CBorg", avatar_route="api/ai/static/jupyternaut.svg")
+    persona = Persona(name="BearBorg", avatar_route="api/ai/static/jupyternaut.svg")
 
     @classmethod
     def is_api_key_exc(cls, e: Exception):
@@ -117,12 +128,19 @@ class BearBorgChatProvider(BaseProvider, ChatOpenAI):
             return error_details.get("code") == "invalid_api_key"
         return False
 
-class CBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
+# @provider(id="bearborg-embeddings")
+class BearBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
+# class BearBorgEmbeddingsProvider(BaseEmbeddingsModel, OpenAIEmbeddings):
     model_config = {"ignored_types": (str,Persona,EnvAuthStrategy,BearBorgAPIKey)}
-    id = "cborg-embeddings"
-    name = "CBorg"
+    id = "bearborg-embeddings"
+    name = "BearBorg"
     models = [
-        "lbl/nomic-embed-text",
+        "azure/gpt-4o",
+        "azure/gpt-4o-mini",
+        "gemini/gemini-1.5-pro",
+        "gemini/gemini-1.5-flash"    ,
+        "gemini/gemini-2.0-flash-lite-001",
+        "gemini/gemini-2.0-flash-001"
     ]
     help: str = "Click here for more details on [CBorg](https://cborg.lbl.gov)"
     model_id_key = "model"
@@ -133,6 +151,6 @@ class CBorgEmbeddingsProvider(BaseEmbeddingsProvider, OpenAIEmbeddings):
     #    name="LITELLM_API_KEY", keyword_param="openai_api_key",
     #)
     openai_api_key = BearBorgAPIKey()
-    openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433') + '/v1'
-    openai_organization = "Berkeley Lab"
-    persona = Persona(name="CBorg", avatar_route="api/ai/static/jupyternaut.svg")
+    openai_api_base = getenv("LITELLM_SERVER", 'https://bearborg.berkeley.edu:4433')
+    openai_organization = "RIT"
+    persona = Persona(name="BearBorg", avatar_route="api/ai/static/jupyternaut.svg")

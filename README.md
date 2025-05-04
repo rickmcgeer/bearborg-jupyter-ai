@@ -1,57 +1,58 @@
-# jupyter_ai_bearborg
+# bearborg_ai
 
-`jupyter_ai_cborg` is a Python module that registers CBorg as a model provider for Jupyter AI.
+`bearborg_ai` is a Jupyter AI module, a package
+that registers additional model providers and slash commands for the Jupyter AI
+extension.
 
 ## Requirements
 
-- Python 3.8 - 3.13
+- Python 3.9 - 3.12
 - JupyterLab 4
 
-## Installation
+## Install
 
-To install the extension, clone this repo and then use pip to install from the local directory:
-
-```bash
-git clone https://github.com/lbnl-science-it/cborg-jupyter-ai.git
-cd cborg-jupyter-ai
-pip install -e .
-```
-
-If you use a virtual environment, be sure to activate the venv prior to installation.
-
-## Setup
-
-Authentication for BearBorg is provided via your API key, which must be defined as an environment variable LITELLM_API_KEY:
+To install the extension, execute:
 
 ```bash
-export LITELLM_API_KEY="sk-..."
-jupyter-lab
+pip install bearborg_ai
 ```
 
-## Model Selection
+## Uninstall
 
-Within Jupyter Lab, select the Jupyter AI icon on the left. Select the BearBorg model of choice from the drop down menuse.
+To remove the extension, execute:
 
-## Budget Checking via /spend
+```bash
+pip uninstall bearborg_ai
+```
 
-A custom slash command "/spend" is available, which returns your current API key spend and budget reset date.
+## Contributing
 
-## Changing the API Endpoint
+### Development install
 
-The default endpoint is https://bearborg.berkeley.edu:4443.
+```bash
+cd bearborg-ai
+pip install -e "."
+```
 
-To change the endpoint, set the environment variable LITELLM_SERVER
+### Development uninstall
 
+```bash
+pip uninstall bearborg_ai
+```
 
+#### Backend tests
 
+This package uses [Pytest](https://docs.pytest.org/) for Python testing.
 
-## TODO Items
+Install test dependencies (needed only once):
 
-- Inline completion support
-- Add more models to chat and embeddings 
+```sh
+cd bearborg-ai
+pip install -e ".[test]"
+```
 
-## Thanks
+To execute them, run:
 
-Thank you to Andrew Schmeder of LBL for the CBorg code on which this is based
-
-
+```sh
+pytest -vv -r ap --cov bearborg_ai
+```
